@@ -6,12 +6,15 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.UserDictionary;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -59,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
             danhBaArrayAdapter.notifyDataSetChanged();
 
         }
+        lvdanhba.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this,ChiTietContacts.class);
+                intent.putExtra("Dulieu",dsdanhba.get(i).toString());
+                startActivity(intent);
+            }
+        });
     }
     public void insertDictionary(Dictionary dictionary){
         ContentValues contentValues = new ContentValues();
